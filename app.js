@@ -26,6 +26,7 @@ function verificarChute(){
             exibirTextoNaTela('p', 'O numero secreto é maior!');
         }
         tentativas++;
+        limparCampo()
     }
 }
 
@@ -33,6 +34,11 @@ function verificarChute(){
 function gerarNumeroAleatorio(){
     let numeroAleatorio = parseInt(Math.random() * 10 + 1);
     return numeroAleatorio;
+}
+
+function limparCampo() {
+    chute = document.querySelector('input');
+    chute.value = '';
 }
 
 exibirTextoNaTela('h1', 'Jogo do Numero Secreto');
