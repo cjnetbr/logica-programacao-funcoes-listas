@@ -14,7 +14,19 @@ function exibirTextoNaTela(tag, texto){
 //Função sem Parâmetro
 function verificarChute(){
     let chute = document.querySelector('input').value;
-    console,console.log(chute == numeroSecreto);
+    if(chute == numeroSecreto){
+        exibirTextoNaTela('h1', 'Acertou!');
+        let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
+        let mensagemTentativas = `Voce Você descobriu o numero secreto com ${tentativas} ${palavraTentativas}!`;
+        exibirTextoNaTela('p', mensagemTentativas);
+    } else {
+        if(chute > numeroSecreto){
+            exibirTextoNaTela('p', 'O numero secreto é menor!');
+        } else {
+            exibirTextoNaTela('p', 'O numero secreto é maior!');
+        }
+        tentativas++;
+    }
 }
 
 //Função com retorno
@@ -27,3 +39,5 @@ exibirTextoNaTela('h1', 'Jogo do Numero Secreto');
 exibirTextoNaTela('p', 'Escolha um numero entre 0 e 10');
 
 let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
