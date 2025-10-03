@@ -13,7 +13,8 @@ function exibirTextoNaTela(tag, texto){
 
 //Função sem Parâmetro
 function verificarChute(){
-    console,console.log(numeroSecreto);
+    let chute = document.querySelector('input').value;
+    console,console.log(chute == numeroSecreto);
 }
 
 //Função com retorno
