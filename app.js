@@ -15,6 +15,16 @@ menssagemInicial();
 function exibirTextoNaTela(tag, texto){
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    //responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+     if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR'; 
+        utterance.rate = 1.2; 
+        window.speechSynthesis.speak(utterance); 
+    } else {
+        console.log("Web Speech API não suportada neste navegador.");
+    }
+    
 }
 
 //Função sem Parâmetro
@@ -23,7 +33,7 @@ function verificarChute(){
     if(chute == numeroSecreto){
         exibirTextoNaTela('h1', 'Acertou!');
         let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
-        let mensagemTentativas = `Voce descobriu o numero secreto com ${tentativas} ${palavraTentativas}!`;
+        let mensagemTentativas = `Você descobriu o numero secreto com ${tentativas} ${palavraTentativas}!`;
         exibirTextoNaTela('p', mensagemTentativas);
         document.getElementById('reiniciar').removeAttribute('disabled');
     } else {
@@ -45,7 +55,7 @@ function gerarNumeroAleatorio(){
     if(quantidadeNumeroLista == numeroLimite){
         listaNumerosSorteados = [];
     }
-    
+
     if(listaNumerosSorteados.includes(numeroSorteado)){
         return gerarNumeroAleatorio();
     } else {
